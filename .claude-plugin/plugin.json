@@ -1,0 +1,21 @@
+{
+  "name": "academic-humanizer-kr",
+  "version": "0.1.0",
+  "description": "한국어 학술 논문 텍스트에서 'AI가 쓴 티'를 제거하되 학술 규범(헤징·명사화·인용·IMRaD)은 보존하는 Claude Code 하네스. 의미·수치·인용은 한 글자도 건드리지 않는다.",
+  "author": {
+    "name": "howtoconsulting5776",
+    "url": "https://github.com/howtoconsulting5776-boop"
+  },
+  "homepage": "https://github.com/howtoconsulting5776-boop/academic-humanizer-kr",
+  "license": "Apache-2.0",
+  "keywords": [
+    "korean",
+    "academic-writing",
+    "humanize",
+    "ai-detection",
+    "paper",
+    "thesis",
+    "논문",
+    "학술글쓰기"
+  ]
+}
