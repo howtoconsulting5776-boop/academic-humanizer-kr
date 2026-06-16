@@ -6,20 +6,24 @@
   },
   "metadata": {
     "description": "한국어 학술 논문용 AI-티 제거 하네스 마켓플레이스",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "academic-humanizer-kr",
       "source": "./",
       "description": "한국어 학술 텍스트의 AI 티를 제거하되 학술 규범을 보존하는 휴머나이저. /humanize-academic 또는 자연어로 호출.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "howtoconsulting5776",
         "url": "https://github.com/howtoconsulting5776-boop"
       },
       "license": "Apache-2.0",
-      "category": ["writing", "korean", "academic"],
+      "category": [
+        "writing",
+        "korean",
+        "academic"
+      ],
       "strict": false
     }
   ]

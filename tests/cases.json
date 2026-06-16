@@ -1,0 +1,75 @@
+[
+  {
+    "id": "01-number-preserved",
+    "desc": "표본 수·p값이 보존되면 통과, 바뀌면 NUMBER_DRIFT",
+    "mode": "academic",
+    "original": "본 연구는 128명을 대상으로 분석하였다. 집단 간 차이는 유의하였다(p < .01).",
+    "good": "본 연구는 128명을 분석하였다. 집단 간 차이는 유의하였다(p < .01).",
+    "bad": "본 연구는 130명을 분석하였다. 집단 간 차이는 유의하였다(p < .05).",
+    "expect_bad": ["NUMBER_DRIFT", "NUMBER_INVENTED"]
+  },
+  {
+    "id": "02-citation-fabrication",
+    "desc": "휴머나이저가 없던 인용을 지어내면 CITATION_FABRICATION",
+    "mode": "academic",
+    "original": "선행 연구는 협력학습이 효과적이라고 본다. 그러나 합의는 아직 없다.",
+    "good": "선행 연구는 협력학습이 효과적이라고 본다 [저자 확인: 출처 필요]. 다만 합의는 아직 없다.",
+    "bad": "선행 연구(Vygotsky, 1978)는 협력학습이 효과적이라고 본다. 다만 합의는 아직 없다.",
+    "expect_bad": ["CITATION_FABRICATION"]
+  },
+  {
+    "id": "03-citation-preserved",
+    "desc": "실제 인용은 그대로 보존되어야 함; 사라지면 CITATION_DROPPED",
+    "mode": "academic",
+    "original": "Montgomery(2013)는 반복·랜덤화·블록화를 세 원리로 제시한다.",
+    "good": "Montgomery(2013)는 반복, 랜덤화, 블록화를 세 원리로 제시한다.",
+    "bad": "한 연구는 반복, 랜덤화, 블록화를 세 원리로 제시한다.",
+    "expect_bad": ["CITATION_DROPPED"]
+  },
+  {
+    "id": "04-keep-single-hedge",
+    "desc": "academic 모드에서 정당한 단일 헤징을 단정화하면 HEDGE_STRIPPED",
+    "mode": "academic",
+    "original": "이 결과는 동기 향상으로 이어질 수 있다.",
+    "good": "이 결과는 동기 향상으로 이어질 수 있다.",
+    "bad": "이 결과는 동기 향상으로 이어진다.",
+    "keep_hedges": ["이어질 수 있다"],
+    "expect_bad": ["HEDGE_STRIPPED"]
+  },
+  {
+    "id": "05-general-mode-allows-assertion",
+    "desc": "general 모드에서는 헤징 단정화가 위반이 아님 (keep_hedges 미적용)",
+    "mode": "general",
+    "original": "이 제품은 사용자에게 도움이 될 수 있다.",
+    "good": "이 제품은 사용자에게 도움이 된다.",
+    "bad": "이 제품은 무려 200%의 효과가 있다.",
+    "expect_bad": ["NUMBER_INVENTED"]
+  },
+  {
+    "id": "06-direct-quote-immutable",
+    "desc": "직접인용은 글자 단위 보존; 바뀌면 QUOTE_ALTERED",
+    "mode": "academic",
+    "original": "저자는 이를 \"창발적 질서\"라고 불렀다.",
+    "good": "저자는 이를 \"창발적 질서\"라고 명명하였다.",
+    "bad": "저자는 이를 \"자발적 질서\"라고 명명하였다.",
+    "expect_bad": ["QUOTE_ALTERED"]
+  },
+  {
+    "id": "07-over-edit-halt",
+    "desc": "변경률 50% 초과면 OVER_EDIT",
+    "mode": "academic",
+    "original": "반복은 같은 처리 조건에서 둘 이상의 관측값을 얻는 것이다.",
+    "good": "반복은 같은 처리 조건에서 둘 이상의 관측값을 얻는다.",
+    "bad": "여러 번 측정.",
+    "expect_bad": ["OVER_EDIT"]
+  },
+  {
+    "id": "08-clean-text-no-change",
+    "desc": "이미 깨끗한 학술 문장은 그대로 두면 통과(과교정 방지 실증)",
+    "mode": "academic",
+    "original": "랜덤화는 알려지지 않은 교란 요인이 특정 처리에 몰리는 것을 막는다.",
+    "good": "랜덤화는 알려지지 않은 교란 요인이 특정 처리에 몰리는 것을 막는다.",
+    "bad": "랜덤화는 알려지지 않은 교란 요인이 특정 처리(Fisher, 1935)에 몰리는 것을 막는다.",
+    "expect_bad": ["CITATION_FABRICATION"]
+  }
+]

@@ -1,5 +1,9 @@
 # academic-humanizer-kr
 
+[![smoke](https://github.com/howtoconsulting5776-boop/academic-humanizer-kr/actions/workflows/smoke.yml/badge.svg)](https://github.com/howtoconsulting5776-boop/academic-humanizer-kr/actions/workflows/smoke.yml)
+[![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-8A63D2.svg)](https://docs.anthropic.com/en/docs/claude-code)
+
 한국어 **학술 논문** 텍스트에서 'AI가 쓴 티'를 제거하되, **헤징·명사화·인용·IMRaD 같은
 정당한 학술 규범은 보존**하는 Claude Code 하네스(플러그인).
 
@@ -50,6 +54,26 @@
 /humanize-academic essay.md --general    # 비학술 모드(공격적)
 ```
 
+## 작동 예시 (before/after)
+
+> **Before (AI 슬롭):** "본 연구는 인공지능 교육의 효과를 살펴보고자 한다. **주목할 만한
+> 점은**, **많은 연구들이** 인공지능 기반 학습이 **매우 효과적**이라는 것을 보여주고 있다는
+> 것이다. **또한**, 인공지능은 학습자의 동기를 **향상시킬 수 있을 것으로 보일 수 있다**."
+
+> **After (`--academic`):** "본 연구는 인공지능 교육의 효과를 분석한다. 선행 연구는 인공지능
+> 기반 학습이 효과적이라고 보고한다 `[저자 확인: 출처 필요]`. 인공지능은 학습자의 동기를
+> 향상시키는 것으로 **보인다**."
+
+공허 메타·Hype·접속사·중첩 헤징·번역투는 제거하되, **단일 헤징 "보인다"는 보존**하고
+근거 없는 일반화는 *날조 대신 플래그*. 더 많은 예시(실제 볼트 노트 포함)와 메트릭:
+[examples/EXAMPLES.md](examples/EXAMPLES.md).
+
+## 품질 보증 (테스트로 강제)
+
+4대 불변원칙은 사람 눈이 아니라 **코드로 강제**된다 — `python tests/run_tests.py`가
+"인용 날조 금지 / 단일 헤징 보존 / 수치 보존 / 과교정 방지"를 골든 케이스로 단언(16/16).
+CI(`.github/workflows/smoke.yml`)가 push·PR마다 게이트. 상세: [tests/README.md](tests/README.md).
+
 ## 모드
 
 - **`--academic` (기본):** 학술 규범 보존. 논문·학위논문·초록·학술지 원고.
@@ -79,7 +103,10 @@ academic-humanizer-kr/
 │   └── references/{academic-tell-taxonomy, academic-norms-keep, quick-rules, research-basis}.md
 ├── agents/{academic-humanize-monolith, academic-tell-detector, academic-style-rewriter,
 │           scholarly-fidelity-auditor, academic-naturalness-reviewer}.md
-└── commands/humanize-academic.md
+├── commands/humanize-academic.md
+├── examples/EXAMPLES.md            # before/after 작동 예시
+├── tests/{preservation_lint.py, run_tests.py, cases.json, README.md}  # 불변원칙 회귀 스위트
+└── .github/workflows/smoke.yml     # CI
 ```
 
 설치: [INSTALL.md](INSTALL.md). 라이선스: Apache-2.0.

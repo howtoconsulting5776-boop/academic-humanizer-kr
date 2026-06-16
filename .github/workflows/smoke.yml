@@ -1,0 +1,24 @@
+name: smoke
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  preservation-suite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 불변원칙 회귀 스위트 (preservation suite)
+        run: python tests/run_tests.py
+      - name: 플러그인 메타 JSON 유효성
+        run: |
+          python -c "import json; json.load(open('.claude-plugin/plugin.json', encoding='utf-8')); print('plugin.json OK')"
+          python -c "import json; json.load(open('.claude-plugin/marketplace.json', encoding='utf-8')); print('marketplace.json OK')"
+          python -c "import json; json.load(open('tests/cases.json', encoding='utf-8')); print('cases.json OK')"
