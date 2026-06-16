@@ -2,6 +2,10 @@
 _workspace/
 *.log
 
+# Python
+__pycache__/
+*.pyc
+
 # OS / 에디터
 .DS_Store
 Thumbs.db
